@@ -241,37 +241,6 @@ def testing_reviewed_aggreg(testing_dataset_original_loader, testing_dataset_cor
                             path=os.path.join(args["path_save"], img_dir, plot_name),
                             plot_labels=["x₀", "pred x̂₀", 'DTA map'],
                         )
-                        plot_reviewed(
-                            None,
-                            None,
-                            x_ori_seg[index_slice].detach().cpu(),
-                            xrec_ori_seg_bin[index_slice].detach().cpu(),
-                            dmap_ori_to_plot[index_slice],
-                            None,
-                            None,
-                            x_cor_seg[index_slice].detach().cpu(),
-                            xrec_cor_seg_bin[index_slice].detach().cpu(),
-                            dmap_cor_to_plot[index_slice],
-                            title=plot_title,
-                            path=os.path.join(args["path_save"], img_dir, f"test_{keys[im]}_t_aggreg_seg_only.png"),
-                            plot_labels=["x₀", "pred x̂₀", 'DTA map'],
-                        )
-                        plot_reviewed(
-                            x_ori_img[index_slice].detach().cpu(),
-                            xrec_ori_img[index_slice].detach().cpu(),
-                            None,
-                            None,
-                            dmap_ori_to_plot[index_slice],
-                            x_cor_img[index_slice].detach().cpu(),
-                            xrec_cor_img[index_slice].detach().cpu(),
-                            None,
-                            None,
-                            dmap_cor_to_plot[index_slice],
-                            title=plot_title,
-                            path=os.path.join(args["path_save"], img_dir, f"test_{keys[im]}_t_aggreg_img_only.png"),
-                            plot_labels=["x₀", "pred x̂₀", 'DTA map'],
-                        )
-                        # exit()
                     elif args['organ_channel'] == 'parotid_l' or args['organ_channel'] == 'parotid_r':
                         index_slice = int(np.mean(np.argwhere(x_cor_seg.cpu().detach().numpy()), axis=0)[2]) if x_cor_seg.cpu().detach().numpy().sum() > 0 else x_cor_seg.shape[2] // 2
                         plot_reviewed(
