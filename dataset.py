@@ -133,11 +133,15 @@ def init_reviewed_datasets(args):
     ]
 
     if args["organ_channel"] == 'brainstem':
+        with open(os.path.join(args["path_data"], f'vertebrae_C2_coms_z.json'), 'r') as file:
+            vertebrae = json.load(file)
+
         patches_transform_original = [
             BrainstemPatchd(
                 keys=args["labels_channels"],
                 label_key=args["organ_channel"],
                 patch_size=patch_size,
+                vertebrae=vertebrae,
             ),
         ]
         patches_transform_corrected = [
@@ -145,6 +149,7 @@ def init_reviewed_datasets(args):
                 keys=args["labels_channels"],
                 label_key=args["organ_channel"],
                 patch_size=patch_size,
+                vertebrae=vertebrae,
                 label_key_original=label_key_original
             ),
         ]
